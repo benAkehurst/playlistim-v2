@@ -3,6 +3,7 @@
 	font-family: 'Lato', sans-serif;
 }
 
+/* CSS for navbar */
 .navbarBrand {	
 	/* sets proportions of page logo */
     position: relative;
@@ -12,7 +13,8 @@
     max-height: 70px; /* height of the navbar */
 }
 
-/* CSS Accociated with mainpage */
+/* CSS for homepage */
+
 .welcomeNote, .welcomeText {
 	text-align: center;
 }
@@ -26,6 +28,13 @@
 	font-size: 3vw;
 	text-align: center;
 }
+.aSignUp {
+	color: #ecf0f1;
+}
+
+.aSignUp:hover {
+	color: #ecf0f1;
+}
 
 .ulMainPage {
 	list-style: none;
@@ -36,6 +45,7 @@
 	margin: 0 auto;
 }
 
+/* CSS for footer */
 .footer {
 	margin-top: 50px;
 }

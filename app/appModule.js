@@ -3,7 +3,10 @@
 	"use strict";
 
 	var appModule = angular.module("appModule", ["ngRoute",
-												 "homepageModule"
+												 "homepageModule",
+												 "loginModule",
+												 "registerModule",
+												 "profileModule"
 												]);
 
 	appModule.config(function($routeProvider){
@@ -23,6 +26,13 @@
 			templateUrl:"app/registerView.html"
 		});
 
+		$routeProvider.when("/profile", {
+			controller:"ProfileController",
+			templateUrl:"app/profileView.html"
+		});
+
+		
+
 		$routeProvider.otherwise({
 			redirectTo:"/"
 		});	
@@ -33,7 +43,7 @@
 		var d = new Date();
 		var year = d.getFullYear();
 		return {
-			template:'<p>&copy; playlistim ' + year +'</p>'
+			template:'<p>&copy; Playlistim ' + year +'</p>'
 		};
 	});
 
