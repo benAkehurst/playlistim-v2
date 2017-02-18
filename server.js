@@ -3,6 +3,7 @@ var express = require("express");
 var fs = require("fs");
 var mongoose = require("mongoose");
 var bodyParser = require("body-parser");
+var crypto = require("crypto");
 
 // Makes a variable out of express
 var app = express();
@@ -23,8 +24,6 @@ mongoose.connect("mongodb://localhost:27017/playlistimDB", function(err){
 		console.log("Connected to MongoDB")
 	}
 });
-
-
 
 // Sets up express to run on port 3000
 app.listen(3000, function(){
