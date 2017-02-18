@@ -1,1 +1,23 @@
-<h1>Login View</h1>
+<div ng-include="'assets/html/navbar.html'" id="navbar"></div>
+
+<div class="row">
+	<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+		<h2>sign in</h2>
+
+		<h4>not a member? please <a href="/register">register an account</a> instead</h4>
+
+		<br />
+
+		<form>
+			<div class="form-group">
+		        <label for="signupEmail">enter your email address</label>
+		            <input type="email" class="form-control" id="loginEmail" aria-describedby="emailHelp" placeholder="enter your email">
+		    </div>
+		    <div class="form-group">
+		        <label for="signupPassword">enter your password</label>
+		            <input type="password" class="form-control" id="loginPassword" placeholder="password">
+		    </div>
+		    <button type="button" class="btn btn-danger">sign in</button>
+		</form>
+	</div>
+</div>
