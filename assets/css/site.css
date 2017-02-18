@@ -1,0 +1,41 @@
+*{	
+	/*Sets page font via google fonts */
+	font-family: 'Lato', sans-serif;
+}
+
+.navbarBrand {	
+	/* sets proportions of page logo */
+    position: relative;
+    width: 170px;
+    left: 15px;
+    bottom: 10px;
+    max-height: 70px; /* height of the navbar */
+}
+
+/* CSS Accociated with mainpage */
+.welcomeNote, .welcomeText {
+	text-align: center;
+}
+.featureList {
+	position: absolute;
+  	top: 0;
+	left: 0;
+	z-index: 100;
+	color: #ecf0f1;
+	text-shadow: 2px 2px #ff0000;
+	font-size: 3vw;
+	text-align: center;
+}
+
+.ulMainPage {
+	list-style: none;
+}
+
+.mainLogo {
+	width: 80%;
+	margin: 0 auto;
+}
+
+.footer {
+	margin-top: 50px;
+}
