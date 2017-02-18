@@ -13,6 +13,16 @@
 			templateUrl:"app/homepageView.html"
 		});
 
+		$routeProvider.when("/login", {
+			controller:"LoginController",
+			templateUrl:"app/loginView.html"
+		});
+
+		$routeProvider.when("/register", {
+			controller:"RegisterController",
+			templateUrl:"app/registerView.html"
+		});
+
 		$routeProvider.otherwise({
 			redirectTo:"/"
 		});	
