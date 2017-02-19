@@ -1,21 +1,19 @@
-// All the dependencies required for the app
+// Runs the modules that are installed
 var express = require("express");
-var fs = require("fs");
-var mongoose = require("mongoose");
 var bodyParser = require("body-parser");
-var crypto = require("crypto");
+var mongoose = require("mongoose");
 
-// Makes a variable out of express
+// Puts express in a variable
 var app = express();
 
-// Makes allows express to access the webpage body
+// Runs body parser and json access
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 
 // Sets index.html to the homepage
 app.use(express.static(__dirname));
 
-// Using mongoose to connect to the database
+// Mongoose connets us to the MongoDB database called playlistimDB
 mongoose.connect("mongodb://localhost:27017/playlistimDB", function(err){
 	if(err){
 		console.log("Error: " + err);
@@ -24,6 +22,21 @@ mongoose.connect("mongodb://localhost:27017/playlistimDB", function(err){
 		console.log("Connected to MongoDB")
 	}
 });
+
+// Mongoose Schema - New User
+var NewUser = mongoose.model("NewUser",{
+	name:String,
+	email:String,
+	password:String
+});
+
+// Add a new user to the database
+app.post("/register", function(request, response){
+	var newUser = new NewUser(request.body);
+	newUser.save();
+	response.status(201);
+});
+
 
 // Sets up express to run on port 3000
 app.listen(3000, function(){
