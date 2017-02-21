@@ -8,6 +8,7 @@
 
 		$scope.login = function() {
 
+
 			var loginEmail = $scope.loginEmail;
 			var loginPassword = $scope.loginPassword;
 
