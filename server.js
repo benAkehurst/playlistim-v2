@@ -14,6 +14,7 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname));
 
 // Mongoose connets us to the MongoDB database called playlistimDB
+mongoose.Promise = global.Promise;
 mongoose.connect("mongodb://localhost:27017/playlistimDB", function(err){
 	if(err){
 		console.log("Error: " + err);
@@ -24,7 +25,7 @@ mongoose.connect("mongodb://localhost:27017/playlistimDB", function(err){
 });
 
 // Mongoose Schema - New User
-var NewUser = mongoose.model("NewUser",{
+var User = mongoose.model("User",{
 	name:String,
 	email:String,
 	password:String
@@ -32,9 +33,29 @@ var NewUser = mongoose.model("NewUser",{
 
 // Add a new user to the database
 app.post("/register", function(request, response){
-	var newUser = new NewUser(request.body);
+	var newUser = new User(request.body);
 	newUser.save();
 	response.status(201);
+	console.log(newUser);
+});
+
+// Checks if a user exists in the DB for login
+app.post("/login", function(request, response){
+	User.findOne({email:request.body.email, 
+				  password:request.body.password})
+		.exec(function(err, user){
+		if(err){
+			console.log("Error: " + err);
+		}
+		else{
+			if(user === null){
+				console.log("not registered");
+			}
+			else{
+				console.log("registered");
+			}
+		}
+	});
 });
 
 

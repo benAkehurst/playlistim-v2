@@ -31,8 +31,6 @@
 			templateUrl:"app/profileView.html"
 		});
 
-		
-
 		$routeProvider.otherwise({
 			redirectTo:"/"
 		});	

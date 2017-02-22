@@ -14,10 +14,10 @@
 			var email = $scope.registerEmail;
 			var password = $scope.registerPassword;
 			
-			// console.log("From register controller" + "\nName: " + name + "\nEmail: " + email + "\nPassword: " + password);
+			console.log("From register controller" + "\nName: " + name + "\nEmail: " + email + "\nPassword: " + password);
 			
 			// Here we make an object out of the user details
-			var user = {
+			var newUser = {
 				"name":name,
 				"email":email,
 				"password":password
@@ -28,7 +28,7 @@
 				  method  : 'POST',
 				  url     : '/register',
 				  headers : { 'Content-Type': 'application/json'  },
-				  data    : user
+				  data    : newUser
 
 			});
 		}
