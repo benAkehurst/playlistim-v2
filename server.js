@@ -26,36 +26,58 @@ mongoose.connect("mongodb://localhost:27017/playlistimDB", function(err){
 
 // Mongoose Schema - New User
 var User = mongoose.model("User",{
-	name:String,
 	email:String,
-	password:String
+	password:String,
+	newVideo:{ "title":String,
+		   	   "category":String,
+		   	   "description":String,
+		   	   "link":String
+		   	 },
+	videos:[]
 });
 
 // Add a new user to the database
 app.post("/register", function(request, response){
+	// Using the User Schema, we make a new user with user supplied details
 	var newUser = new User(request.body);
+	// The user is saved to the DB
 	newUser.save();
 	response.status(201);
+	response.send('<h2>Thanks for Registering!</h2>')
 	console.log(newUser);
 });
 
 // Checks if a user exists in the DB for login
 app.post("/login", function(request, response){
+	// We receive the $http request from the login
+	// In the DB we look for the user provided UN and PW
 	User.findOne({email:request.body.email, 
 				  password:request.body.password})
+		// If there is an error the program stops and the error is logged in the console
 		.exec(function(err, user){
 		if(err){
 			console.log("Error: " + err);
 		}
+		// If there is no error
 		else{
+			// if there is no user
 			if(user === null){
-				console.log("not registered");
+				// We send back to the controller an object with the value false
+				var notRegistered = [{"registered":false}];
+				response.send(JSON.stringify(notRegistered));
 			}
+			// If the user exists in the DB
 			else{
-				console.log("registered");
+				// We send back to the controller an object with the value true
+				var registered = [{"registered":true, "name":response.name}];
+				response.send(JSON.stringify(registered));
 			}
 		}
 	});
+});
+
+app.post("/add", function(request,response){
+	
 });
 
 
