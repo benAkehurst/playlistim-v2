@@ -45,6 +45,12 @@
 	margin: 0 auto;
 }
 
+/* CSS for the profile page */
+
+th {
+	text-align:center;
+}
+
 /* CSS for footer */
 .footer {
 	margin-top: 50px;
