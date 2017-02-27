@@ -28,12 +28,12 @@ mongoose.connect("mongodb://localhost:27017/playlistimDB", function(err){
 var User = mongoose.model("User",{
 	email:String,
 	password:String,
+	videos:[],
 	newVideo:{ "title":String,
 		   	   "category":String,
 		   	   "description":String,
 		   	   "link":String
-		   	 },
-	videos:[]
+		   	 }
 });
 
 // Add a new user to the database
@@ -77,7 +77,8 @@ app.post("/login", function(request, response){
 });
 
 app.post("/add", function(request,response){
-	
+	var newVideo = new Object({"newVideo":request.body});
+	console.log(newVideo);
 });
 
 
