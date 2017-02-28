@@ -33,11 +33,14 @@
 			// In response from the server we get a confimation if the user is registered or not
 			.then(function(response){
 				var status = response.data[0].registered;
-				// console.log(status);
-				// If the user exists then a session storage item us created for the window session
+				var name = response.data[0].name;
+
+				console.log(status);
+				console.log(name);
+
+				$rootScope.usersName = name;
+			
 				if(status === true){
-					$rootScope.loggedIn = true;
-					sessionStorage.setItem("user", "Logged In");
 					$location.path("/profile");
 				}
 

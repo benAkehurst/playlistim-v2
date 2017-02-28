@@ -10,6 +10,7 @@
 		$scope.register = function(){
 			
 			// Here we access the values that the user enters
+			var name = $scope.registerName;
 			var email = $scope.registerEmail;
 			var password = $scope.registerPassword;
 			
@@ -17,6 +18,7 @@
 			
 			// Here we make an object out of the user details
 			var newUser = {
+				"name":name,
 				"email":email,
 				"password":password
 			}
@@ -32,7 +34,10 @@
 
 			// After the user registers, the page redirects to the login page
 			.then(function(response){
-				$location.path("/login");
+				// console.log(response);
+				if(response.data === "Registered"){
+					$location.path("/login");
+				}
 			});
 		}
 		

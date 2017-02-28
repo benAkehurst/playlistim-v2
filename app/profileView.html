@@ -2,6 +2,10 @@
 
 <div class="container" align="center">
 
+<div>
+  <h1>Hi {{usersName}}!</h1>
+</div>
+
 <div id="videosTable">
   <table border="1" align="center" text-align="center">
     <thead>
@@ -86,3 +90,5 @@
 
   </div>
 </div>
+
+<div data-ng-controller="ProfileController" data-ng-init="getName()"></div>

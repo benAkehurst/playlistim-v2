@@ -2,6 +2,7 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
+var passport = require("passport");
 
 // Puts express in a variable
 var app = express();
@@ -26,6 +27,7 @@ mongoose.connect("mongodb://localhost:27017/playlistimDB", function(err){
 
 // Mongoose Schema - New User
 var User = mongoose.model("User",{
+	name:String,
 	email:String,
 	password:String,
 	videos:[],
@@ -43,8 +45,8 @@ app.post("/register", function(request, response){
 	// The user is saved to the DB
 	newUser.save();
 	response.status(201);
-	response.send('<h2>Thanks for Registering!</h2>')
-	console.log(newUser);
+	response.send("Registered");
+	// console.log(newUser);
 });
 
 // Checks if a user exists in the DB for login
@@ -69,18 +71,18 @@ app.post("/login", function(request, response){
 			// If the user exists in the DB
 			else{
 				// We send back to the controller an object with the value true
-				var registered = [{"registered":true, "name":response.name}];
+				var registered = [{"registered":true, "name":user.name}];
 				response.send(JSON.stringify(registered));
 			}
 		}
 	});
 });
 
-app.post("/add", function(request,response){
+// Add a video
+app.post("/addVideo", function(request,response){
 	var newVideo = new Object({"newVideo":request.body});
 	console.log(newVideo);
 });
-
 
 // Sets up express to run on port 3000
 app.listen(3000, function(){

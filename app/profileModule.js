@@ -4,8 +4,8 @@
 
 	var profileModule = angular.module("profileModule", []);
 
-	profileModule.controller("ProfileController", function($scope, $http, $location){
-
+	profileModule.controller("ProfileController", function($scope, $http, $location, $rootScope){
+		
 		$scope.addVideo = function(){
 			var videoTitle = $scope.videoTitle;
 			var videoCategory = $scope.videoCategory;
@@ -27,17 +27,19 @@
 			// In the http request to the server we send over the user details object
 			$http({
 				method:"POST",
-				url:"/add",
+				url:"/addVideo",
 				headers:{ 'Content-Type': 'application/json'  },
 				data:newVideo
 			})
 		}
 
+		
+
 		$http.get("./videos.json").then(function(response){
 
 				$scope.videos = response.data; // products = model (data type)
 
-			}); // End of then
+		}); // End of then
 
 		// When the user logs out
 		$scope.logout = function(){
