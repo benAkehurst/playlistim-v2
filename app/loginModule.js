@@ -34,13 +34,20 @@
 			.then(function(response){
 				var status = response.data[0].registered;
 				var name = response.data[0].name;
+				var email = response.data[0].email;
 
-				console.log(status);
-				console.log(name);
+				// console.log(status);
+				// console.log(name);
+				// console.log(email);
 
 				$rootScope.usersName = name;
 			
 				if(status === true){
+					//If the user logs in we set a session token with the users name
+					sessionStorage.setItem('user',JSON.stringify(name));
+					sessionStorage.setItem('email',JSON.stringify(email));
+
+
 					$location.path("/profile");
 				}
 

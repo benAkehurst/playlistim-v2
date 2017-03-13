@@ -70,8 +70,8 @@ app.post("/login", function(request, response){
 			}
 			// If the user exists in the DB
 			else{
-				// We send back to the controller an object with the value true
-				var registered = [{"registered":true, "name":user.name}];
+				// We send back to the controller an object with the value true, the users name and email to be saved in session storage
+				var registered = [{"registered":true, "name":user.name, "email":user.email}];
 				response.send(JSON.stringify(registered));
 			}
 		}
@@ -82,6 +82,19 @@ app.post("/login", function(request, response){
 app.post("/addVideo", function(request,response){
 	var newVideo = new Object({"newVideo":request.body});
 	console.log(newVideo);
+	
+	User.findOne({email:newVideo.email})
+
+	.exec(function(err, newUserVideo){
+		if(err){
+			console.log("Error: " + err);
+		}
+		// If there is no error
+		else{
+			newUserVideo.roles.push({newVideo});
+   			newUserVideo.save(function (err) { "success"});
+		}
+	});
 });
 
 // Sets up express to run on port 3000

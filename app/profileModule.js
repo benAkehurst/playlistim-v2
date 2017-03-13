@@ -5,7 +5,7 @@
 	var profileModule = angular.module("profileModule", []);
 
 	profileModule.controller("ProfileController", function($scope, $http, $location, $rootScope){
-		
+
 		$scope.addVideo = function(){
 			var videoTitle = $scope.videoTitle;
 			var videoCategory = $scope.videoCategory;
@@ -14,8 +14,12 @@
 
 			console.log("From login controller" + "\nTitle: " + videoTitle + "\nCategory: " + videoCategory + "\nDescription: " + videoDescription + "\nLink: " + videoLink);
 
+			var user = sessionStorage.getItem('email');
+			console.log(user);
+
 			// Here we make an object of the login and password
 			var newVideo = {
+				"user":user,
 				"title":videoTitle,
 				"category":videoCategory,
 				"description":videoDescription,
@@ -33,8 +37,11 @@
 			})
 		}
 
-		
+	
 
+
+
+	
 		$http.get("./videos.json").then(function(response){
 
 				$scope.videos = response.data; // products = model (data type)
