@@ -31,11 +31,11 @@ var User = mongoose.model("User",{
 	email:String,
 	password:String,
 	videos:[],
-	newVideo:{ "title":String,
+	newVideo:[{ "title":String,
 		   	   "category":String,
 		   	   "description":String,
 		   	   "link":String
-		   	 }
+		   	}]
 });
 
 // Add a new user to the database
@@ -91,8 +91,8 @@ app.post("/addVideo", function(request,response){
 		}
 		// If there is no error
 		else{
-			newUserVideo.roles.push({newVideo});
-   			newUserVideo.save(function (err) { "success"});
+			console.log("success");
+
 		}
 	});
 });
