@@ -80,18 +80,20 @@ app.post("/login", function(request, response){
 
 // Add a video
 app.post("/addVideo", function(request,response){
+	
 	var newVideo = new Object({"newVideo":request.body});
+	
 	console.log(newVideo);
 	
 	User.findOne({email:newVideo.email})
 
-	.exec(function(err, newUserVideo){
+	.exec(function(err, newVideo){
 		if(err){
 			console.log("Error: " + err);
 		}
 		// If there is no error
 		else{
-			console.log("success");
+			console.log("success: " + newVideo);
 
 		}
 	});
