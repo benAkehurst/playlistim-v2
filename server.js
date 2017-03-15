@@ -85,7 +85,7 @@ app.post("/addVideo", function(request,response){
 	
 	console.log(newVideo);
 	
-	User.findOne({email:newVideo.email})
+	User.findOne({email:newVideo.user})
 
 	.exec(function(err, newVideo){
 		if(err){
