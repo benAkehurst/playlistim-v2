@@ -31,11 +31,6 @@ var User = mongoose.model("User",{
 	email:String,
 	password:String,
 	videos:[],
-	newVideo:[{ "title":String,
-		   	   "category":String,
-		   	   "description":String,
-		   	   "link":String
-		   	}]
 });
 
 // Add a new user to the database
@@ -71,7 +66,7 @@ app.post("/login", function(request, response){
 			// If the user exists in the DB
 			else{
 				// We send back to the controller an object with the value true, the users name and email to be saved in session storage
-				var registered = [{"registered":true, "name":user.name, "email":user.email}];
+				var registered = [{"registered":true, "name":user.name, "id":user._id}];
 				response.send(JSON.stringify(registered));
 			}
 		}
@@ -81,21 +76,27 @@ app.post("/login", function(request, response){
 // Add a video
 app.post("/addVideo", function(request,response){
 	
-	var newVideo = new Object({"newVideo":request.body});
+	var newVideo = request.body;
 	
 	console.log(newVideo);
-	
-	User.findOne({email:newVideo.user})
 
-	.exec(function(err, newVideo){
+	User.update({_id:newVideo.userID}, {$push:{
+		videos:newVideo
+	}}, {upsert:true}, function(err){
 		if(err){
 			console.log("Error: " + err);
 		}
-		// If there is no error
-		else{
-			console.log("success: " + newVideo);
-
+		else {
+			console.log("Added!");
 		}
+	});
+});
+
+app.get("/getUserVideos", function(request,response){
+
+	User.findOne({},function(err,videos){
+		response.send(videos);
+		// console.log(videos);
 	});
 });
 

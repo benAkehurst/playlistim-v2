@@ -21,7 +21,7 @@
 
 		$http({
 				method  : 'POST',
-				url     : '/register',
+				url     : '/addVideo',
 				headers : { 'Content-Type': 'application/json'  },
 				data    : newVideo
 		});
