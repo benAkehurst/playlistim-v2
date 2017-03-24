@@ -67,12 +67,35 @@
       </td>
 
       <td>  
-        <button class="btn-small btn-danger"><span class="glyphicon glyphicon-remove"></span> Delete Video</button>
+        <button class="btn-small btn-danger" ng-click="removeVideo();" ><span class="glyphicon glyphicon-remove"></span> Delete Video</button>
       </td>
   	</tr>
 
   </table>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
@@ -84,7 +107,7 @@
         <h4 class="modal-title"></h4>
       </div>
       <div class="modal-body">
-        <iframe width="560" height="315" src="{{response.data.videos.link}}" frameborder="0" allowfullscreen></iframe>
+        <iframe width="560" height="315" src="" frameborder="0" allowfullscreen></iframe>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>

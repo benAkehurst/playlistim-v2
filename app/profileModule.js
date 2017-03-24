@@ -16,6 +16,28 @@
 			}); // End of get
 		}
 
+		$scope.removeVideo = function(){
+			
+
+			var title = $scope.videoTitleInTable;
+
+			console.log(title);
+
+			var titleObj = {"title":title}
+
+			console.log(JSON.stringify(titleObj));
+
+			$http({
+				method:"DELETE",
+				url:"/removeVideo",
+				headers:{ 'Content-Type': 'application/json'  },
+				data:titleObj
+			});
+
+
+			$scope.getVideos();
+		}
+
 		// Adding a video
 		$scope.addVideo = function(){
 			var videoTitle = $scope.videoTitle;

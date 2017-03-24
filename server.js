@@ -2,7 +2,6 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
-var passport = require("passport");
 
 // Puts express in a variable
 var app = express();
@@ -97,6 +96,22 @@ app.get("/getUserVideos", function(request,response){
 	User.findOne({},function(err,videos){
 		response.send(videos);
 		// console.log(videos);
+	});
+});
+
+app.delete("/removeVideo", function(request,response){
+
+	var videoToRemove = request.body;
+
+	console.log(videoToRemove);
+
+	User.findOne({title:request.title}, function(err){
+		if(err){
+			console.log("Error: " + err);
+		}
+		else {
+			console.log("Deleted!");
+		}
 	});
 });
 
