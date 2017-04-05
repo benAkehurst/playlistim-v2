@@ -91,6 +91,7 @@ app.post("/addVideo", function(request,response){
 	});
 });
 
+// Gets all the videos in the DB accosiated with the user
 app.get("/getUserVideos", function(request,response){
 
 	User.findOne({},function(err,videos){
@@ -99,6 +100,7 @@ app.get("/getUserVideos", function(request,response){
 	});
 });
 
+// Deletes a video from the users DB
 app.delete("/removeVideo", function(request,response){
 
 	var videoToRemove = request.body;

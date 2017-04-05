@@ -6,39 +6,7 @@
 
 	profileModule.controller("ProfileController", function($scope, $http, $location, $rootScope){
 
-		// Get the videos from user profile in DB
-		$scope.getVideos = function(){
-			
-			$http.get("/getUserVideos").then(function(response){
-				
-				$scope.videos = response.data.videos; // products = model (data type)
-			
-			}); // End of get
-		}
-
-		$scope.removeVideo = function(){
-			
-
-			var title = $scope.videoTitleInTable;
-
-			console.log(title);
-
-			var titleObj = {"title":title}
-
-			console.log(JSON.stringify(titleObj));
-
-			$http({
-				method:"DELETE",
-				url:"/removeVideo",
-				headers:{ 'Content-Type': 'application/json'  },
-				data:titleObj
-			});
-
-
-			$scope.getVideos();
-		}
-
-		// Adding a video
+		// Create
 		$scope.addVideo = function(){
 			var videoTitle = $scope.videoTitle;
 			var videoCategory = $scope.videoCategory;
@@ -73,7 +41,45 @@
 			$scope.getVideos();
 		} // End of adding a video
 
-		// When the user logs out
+		// Read
+		$scope.getVideos = function(){
+			
+			$http.get("/getUserVideos").then(function(response){
+				
+				$scope.videos = response.data.videos; // products = model (data type)
+				console.log(response.data.videos);
+			
+			}); // End of get
+		}
+
+		// Update
+		$scope.updateVideo = function(){
+		}
+
+		// Delete
+		$scope.removeVideo = function(){
+			
+
+			var title = $scope.videoTitleInTable;
+
+			console.log(title);
+
+			var titleObj = {"title":title}
+
+			console.log(JSON.stringify(titleObj));
+
+			$http({
+				method:"DELETE",
+				url:"/removeVideo",
+				headers:{ 'Content-Type': 'application/json'  },
+				data:titleObj
+			});
+
+
+			$scope.getVideos();
+		}
+
+		// Logout Function - Fires where user logs out
 		$scope.logout = function(){
 			// The session storage is cleared
 			sessionStorage.clear();
