@@ -50,8 +50,8 @@
   		<th>Category</th>
   		<th>Description</th>
       <th>Play</th>
-      <th>Edit</th>
-  		<th>Delete</th>
+     <!--  <th>Edit</th>
+  		<th>Delete</th> -->
   	</tr>
   	
   	<tr ng-repeat="item in videos">
@@ -59,16 +59,16 @@
   		<td>{{item.category}}</td>
   		<td>{{item.description}}</td>
   		<td>
-  			<button class="btn btn-danger" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-play"></span>PLAY</button>
+  			<button class="btn btn-danger" ng-click="redirect()"><span class="glyphicon glyphicon-play"></span>PLAY</button>
       </td>
       
-      <td>
+      <!-- <td>
         <button class="btn-small btn-danger" data-toggle="collapse" data-target="#edit"><span class="glyphicon glyphicon-cog"></span> Edit Details</button>
       </td>
 
       <td>  
         <button class="btn-small btn-danger" ng-click="removeVideo();" ><span class="glyphicon glyphicon-remove"></span> Delete Video</button>
-      </td>
+      </td> -->
   	</tr>
 
   </table>
@@ -116,5 +116,6 @@
 
   </div>
 </div>
+
 
 <div data-ng-controller="ProfileController" data-ng-init="getName()"></div>

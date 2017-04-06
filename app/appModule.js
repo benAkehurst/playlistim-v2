@@ -7,7 +7,8 @@
 												 "loginModule",
 												 "registerModule",
 												 "profileModule",
-												 "addModule"
+												 "addModule",
+												 "playModule"
 												]);
 
 	appModule.config(function($routeProvider){
@@ -44,6 +45,11 @@
 		.when("/add", {
 			controller:"AddController",
 			templateUrl:"app/addView.html"
+		})
+
+		.when("/play",{
+			controller:"PlayController",
+			templateUrl:"app/playView.html"
 		})
 
 		.otherwise({

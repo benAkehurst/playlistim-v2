@@ -52,31 +52,8 @@
 			}); // End of get
 		}
 
-		// Update
-		$scope.updateVideo = function(){
-		}
-
-		// Delete
-		$scope.removeVideo = function(){
-			
-
-			var title = $scope.videoTitleInTable;
-
-			console.log(title);
-
-			var titleObj = {"title":title}
-
-			console.log(JSON.stringify(titleObj));
-
-			$http({
-				method:"DELETE",
-				url:"/removeVideo",
-				headers:{ 'Content-Type': 'application/json'  },
-				data:titleObj
-			});
-
-
-			$scope.getVideos();
+		$scope.redirect = function(){
+			$location.path('/play');
 		}
 
 		// Logout Function - Fires where user logs out
