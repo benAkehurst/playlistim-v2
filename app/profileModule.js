@@ -38,11 +38,11 @@
 			});
 
 			// Each time the playlist has a video added, the playlist gets reloaded
-			$scope.getVideos();
+			getVideos();
 		} // End of adding a video
 
 		// Read
-		$scope.getVideos = function(){
+		var getVideos = function(){
 			
 			$http.get("/getUserVideos").then(function(response){
 				
@@ -52,8 +52,10 @@
 			}); // End of get
 		}
 
+		//Allows for redirecting to the play page
 		$scope.redirect = function(){
 			$location.path('/play');
+			
 		}
 
 		// Logout Function - Fires where user logs out
@@ -63,6 +65,14 @@
 			// The user is redirected back to the homepage
 			$location.path("/");
 		}
+
+		// Calls the users playlist on profile load
+		var init = function(){
+			getVideos();
+		}
+
+		//calls the init function when the controller is loaded
+		init();
 		
 	});
 
