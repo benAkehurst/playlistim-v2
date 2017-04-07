@@ -37,6 +37,12 @@
 				data:newVideo
 			});
 
+			
+			// Set back to pristine.
+			$scope.newVideoAddForm.$setPristine();
+			// Since Angular 1.3, set back to untouched state.
+			$scope.newVideoAddForm.$setUntouched();
+
 			// Each time the playlist has a video added, the playlist gets reloaded
 			getVideos();
 		} // End of adding a video
@@ -47,15 +53,17 @@
 			$http.get("/getUserVideos").then(function(response){
 				
 				$scope.videos = response.data.videos; // products = model (data type)
-				console.log(response.data.videos);
+				// console.log(response.data.videos);
 			
 			}); // End of get
 		}
 
-		//Allows for redirecting to the play page
-		$scope.redirect = function(){
+		// Allows for redirecting to the play page
+		$scope.redirect = function(item){
+
+			$rootScope.videoToPlay = item;
+
 			$location.path('/play');
-			
 		}
 
 		// Logout Function - Fires where user logs out

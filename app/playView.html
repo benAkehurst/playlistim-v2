@@ -1,1 +1,39 @@
-<h1>PLAY VIEW</h1>
+<div class="container-fluid videoPlayContainer">
+	
+	<div class="row">
+		
+		<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+
+
+			
+			<div class="clipDetails">
+				{{title}}<br/>
+				{{description}}<br/>
+				{{cat}}<br/>
+			</div>
+
+			<div class=youtubeVideo>
+				<a href="{{link}}">WATCH ON YOUTUBE</a>
+			</div>
+
+			<div class="backButton">
+				<button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-backward"></span> Back</button>
+			</div>
+
+		</div>
+		
+		<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+			
+			<div class="editOptions">
+				<button type="button" class="btn btn-danger" data-toggle="collapse" data-target="#add"><span class="glyphicon glyphicon-info-sign"></span> Edit Video Details</button>
+			</div>
+
+			<div class="deleteOptions">
+				<button type="button" class="btn btn-danger" data-toggle="collapse" data-target="#add"><span class="glyphicon glyphicon-trash"></span> Delete Video</button>
+			</div>
+
+		</div>
+
+	</div>
+
+</div>

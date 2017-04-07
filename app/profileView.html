@@ -12,16 +12,13 @@
       <tr>
         <th colspan="6"><h4>Your Playlist</h4>
 
-       <!--  <button type="button" class="btn btn-danger" ng-click="getVideos();"><span class="glyphicon glyphicon-music
-"></span> Load Your Playlist</button> -->
-
         <button type="button" class="btn btn-danger" data-toggle="collapse" data-target="#add"><span class="glyphicon glyphicon-plus"></span> Add a video</button>
 
          <br />
          <br />
           
           <div id="add" class="collapse">
-            <form>
+            <form name="newVideoAddForm">
               <div class="form-group">
                     <label for="videoTitle">Enter a Tilte</label>
                         <input type="text" class="form-control" id="videoTitle" placeholder="enter the clip title" ng-model="videoTitle" required>
@@ -42,6 +39,7 @@
             </form>
             <br />
           </div>
+
         </th>
       </tr>
     </thead>
@@ -50,8 +48,6 @@
   		<th>Category</th>
   		<th>Description</th>
       <th>Play</th>
-     <!--  <th>Edit</th>
-  		<th>Delete</th> -->
   	</tr>
   	
   	<tr ng-repeat="item in videos">
@@ -59,19 +55,13 @@
   		<td>{{item.category}}</td>
   		<td>{{item.description}}</td>
   		<td>
-  			<button class="btn btn-danger" ng-click="redirect()"><span class="glyphicon glyphicon-play"></span>PLAY</button>
-      </td>
-      
-      <!-- <td>
-        <button class="btn-small btn-danger" data-toggle="collapse" data-target="#edit"><span class="glyphicon glyphicon-cog"></span> Edit Details</button>
+  			<button class="btn btn-danger" ng-click="redirect(item)"><span class="glyphicon glyphicon-play"></span>PLAY</button>
       </td>
 
-      <td>  
-        <button class="btn-small btn-danger" ng-click="removeVideo();" ><span class="glyphicon glyphicon-remove"></span> Delete Video</button>
-      </td> -->
   	</tr>
 
   </table>
+</div>
 </div>
 
 

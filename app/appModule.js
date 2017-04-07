@@ -7,7 +7,6 @@
 												 "loginModule",
 												 "registerModule",
 												 "profileModule",
-												 "addModule",
 												 "playModule"
 												]);
 
@@ -40,11 +39,6 @@
 			// },
 			controller:"ProfileController",
 			templateUrl:"app/profileView.html"
-		})
-
-		.when("/add", {
-			controller:"AddController",
-			templateUrl:"app/addView.html"
 		})
 
 		.when("/play",{

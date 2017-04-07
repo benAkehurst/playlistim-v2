@@ -6,6 +6,23 @@
 
 	playModule.controller("PlayController", function($scope, $http, $location, $rootScope){
 
+		var videoToPlay = $rootScope.videoToPlay;
+		console.log(videoToPlay);
+
+		$scope.title = videoToPlay.title;
+		$scope.cat = videoToPlay.category;
+		$scope.description = videoToPlay.description;
+		$scope.link = videoToPlay.link;
+		
+
+
+
+
+
+
+
+
+
 		// Delete
 		$scope.removeVideo = function(){
 			
@@ -22,8 +39,7 @@
 				url:"/removeVideo",
 				headers:{ 'Content-Type': 'application/json'  },
 				data:titleObj
-			});
-			
+			});	
 		}
 		
 	});
