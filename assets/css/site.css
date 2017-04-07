@@ -45,6 +45,12 @@
 	margin: 0 auto;
 }
 
+/*CSS for login page */
+
+.errorWarningLogin {
+	color:red;
+}
+
 /* CSS for the profile page */
 
 th {

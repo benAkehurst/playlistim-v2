@@ -30,13 +30,13 @@
 		})
 
 		.when("/profile", {
-			// resolve: {
-			// 	"check": function($location, $rootScope){
-			// 		if(!$rootScope.loggedIn){
-			// 			$location.path("/")
-			// 		}
-			// 	}
-			// },
+			resolve: {
+				"check": function($location, $rootScope){
+					if(!$rootScope.loggedIn){
+						$location.path("/")
+					}
+				}
+			},
 			controller:"ProfileController",
 			templateUrl:"app/profileView.html"
 		})

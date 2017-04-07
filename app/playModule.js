@@ -13,15 +13,6 @@
 		$scope.cat = videoToPlay.category;
 		$scope.description = videoToPlay.description;
 		$scope.link = videoToPlay.link;
-		
-
-
-
-
-
-
-
-
 
 		// Delete
 		$scope.removeVideo = function(){

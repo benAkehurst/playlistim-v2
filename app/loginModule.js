@@ -6,6 +6,7 @@
 
 	loginModule.controller("LoginController", function($scope, $http, $location, $rootScope){
 
+		// POST Request for Login
 		$scope.login = function() {
 
 			// These varables are made of the user entered email and password to login
@@ -36,16 +37,19 @@
 				var name = response.data[0].name;
 				var id = response.data[0].id;
 
-				// console.log(status);
-				// console.log(name);
-				// console.log(email);
-
+				// Makes the users name accessable on the whole site
 				$rootScope.usersName = name;
+
+				if (status == false){
+					$scope.errorWarning = "Please check login details and try again";
+				}
 			
-				if(status === true){
+				else {
 					//If the user logs in we set a session token with the users name
 					sessionStorage.setItem('user',JSON.stringify(name));
 					sessionStorage.setItem('id',id);
+
+					$rootScope.loggedIn = true;
 
 					$location.path("/profile");
 				}
