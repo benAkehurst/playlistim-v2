@@ -80,22 +80,20 @@
         };
 
         // Delete
-		$scope.removeVideo = function(){
+		$scope.removeVideo = function(item){
 			
-			var title = $scope.videoTitleInTable;
+			var videoToRemove = item;
 
-			console.log(title);
+			var videoToRemoveObj = {"userID":item.userID, "link":item.link}
 
-			var titleObj = {"title":title}
+			console.log(JSON.stringify(videoToRemoveObj));
 
-			console.log(JSON.stringify(titleObj));
-
-			$http({
-				method:"DELETE",
-				url:"/removeVideo",
-				headers:{ 'Content-Type': 'application/json'  },
-				data:titleObj
-			});	
+			// $http({
+			// 	method:"DELETE",
+			// 	url:"/removeVideo",
+			// 	headers:{ 'Content-Type': 'application/json'  },
+			// 	data:videoToRemoveObj
+			// });	
 		}
 
 		// Calls the users playlist on profile load
