@@ -4,7 +4,7 @@
 
 	var profileModule = angular.module("profileModule", []);
 
-	profileModule.controller("ProfileController", function($scope, $http, $location, $rootScope){
+	profileModule.controller("ProfileController", function($scope, $http, $location, $rootScope,$window){
 
 		// Create
 		$scope.addVideo = function(){
@@ -72,6 +72,30 @@
 			sessionStorage.clear();
 			// The user is redirected back to the homepage
 			$location.path("/");
+		}
+
+		$scope.redirectToYoutube = function(item){
+			var link = item.link;
+            $window.open(link, '_blank');
+        };
+
+        // Delete
+		$scope.removeVideo = function(){
+			
+			var title = $scope.videoTitleInTable;
+
+			console.log(title);
+
+			var titleObj = {"title":title}
+
+			console.log(JSON.stringify(titleObj));
+
+			$http({
+				method:"DELETE",
+				url:"/removeVideo",
+				headers:{ 'Content-Type': 'application/json'  },
+				data:titleObj
+			});	
 		}
 
 		// Calls the users playlist on profile load
