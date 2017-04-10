@@ -79,9 +79,12 @@ app.post("/addVideo", function(request,response){
 	
 	console.log(newVideo);
 
-	User.update({_id:newVideo.userID}, {$push:{
-		videos:newVideo
-	}}, {upsert:true}, function(err){
+	User.update({_id:newVideo.userID}, 
+				{$push:{ videos:newVideo }}, 
+				{upsert:true}, 
+
+		function(err){
+		
 		if(err){
 			console.log("Error: " + err);
 		}
@@ -100,14 +103,21 @@ app.get("/getUserVideos", function(request,response){
 	});
 });
 
-// Deletes a video from the users DB
-app.delete("/removeVideo", function(request,response){
+// Delete a single video from the playlist: 
+app.delete("/removeVideo", function(request, response){
 
 	var videoToRemove = request.body;
 
 	console.log(videoToRemove);
 
-	User.findOne({title:request.title}, function(err){
+	User.update(
+
+		{_id:videoToRemove.userID},
+		{$pull:{videos:{link:videoToRemove.link}}},
+		{safe:true}, 
+
+		function(err){
+		
 		if(err){
 			console.log("Error: " + err);
 		}

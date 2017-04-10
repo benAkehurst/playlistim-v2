@@ -74,11 +74,6 @@
 			$location.path("/");
 		}
 
-		$scope.redirectToYoutube = function(item){
-			var link = item.link;
-            $window.open(link, '_blank');
-        };
-
         // Delete
 		$scope.removeVideo = function(item){
 			
@@ -88,13 +83,21 @@
 
 			console.log(JSON.stringify(videoToRemoveObj));
 
-			// $http({
-			// 	method:"DELETE",
-			// 	url:"/removeVideo",
-			// 	headers:{ 'Content-Type': 'application/json'  },
-			// 	data:videoToRemoveObj
-			// });	
+			$http({
+				method:"DELETE",
+				url:"/removeVideo",
+				headers:{ 'Content-Type': 'application/json'  },
+				data:videoToRemoveObj
+			});	
+
+			getVideos();
 		}
+
+		// Play button opens new tab with youtube video playing
+		$scope.redirectToYoutube = function(item){
+			var link = item.link;
+            $window.open(link, '_blank');
+        };
 
 		// Calls the users playlist on profile load
 		var init = function(){
