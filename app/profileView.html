@@ -7,99 +7,105 @@
 </div>
 
 <div id="videosTable">
-  <table border="1" align="center" text-align="center">
-    <thead>
-      <tr>
-        <th colspan="6"><h4>Your Playlist</h4>
 
-        <button type="button" class="btn btn-danger" data-toggle="collapse" data-target="#add"><span class="glyphicon glyphicon-plus"></span> Add a video</button>
+  <div class="row">
+    <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+        
+        <table border="1" align="center" text-align="center">
+        <thead>
+          <tr>
+            <th colspan="6"><h4>Your Playlist</h4>
 
-         <br />
-         <br />
-          
-          <div id="add" class="collapse">
-            <form name="newVideoAddForm">
-              <div class="form-group">
+            <button type="button" class="btn btn-danger" data-toggle="collapse" data-target="#add"><span class="glyphicon glyphicon-arrow-down"></span> Add a video</button>
+
+             <br />
+             <br />
+              
+              <div id="add" class="collapse">
+                <form name="newVideoAddForm">
+                  <div class="form-group">
                     <label for="videoTitle">Enter a Tilte</label>
-                        <input type="text" class="form-control" id="videoTitle" placeholder="enter the clip title" ng-model="videoTitle" required>
-                </div>
-                <div class="form-group">
+                    <input type="text" class="form-control" id="videoTitle" placeholder="enter the clip title" ng-model="videoTitle" required>
+                  </div>
+                  
+                  <div class="form-group">
                     <label for="videoCategory">Enter a Category</label>
-                        <input type="text" class="form-control" id="videoCategory" placeholder="enter the clip Category" ng-model="videoCategory" required>
-                </div>
-                <div class="form-group">
+                    <input type="text" class="form-control" id="videoCategory" placeholder="enter the clip Category" ng-model="videoCategory" required>
+                  </div>
+                  
+                  <div class="form-group">
                     <label for="videoDescription">Enter a Description</label>
-                        <input type="text" class="form-control" id="videoDescription" placeholder="enter the clip Description" ng-model="videoDescription">
-                </div>
-                <div class="form-group">
+                    <input type="text" class="form-control" id="videoDescription" placeholder="enter the clip Description" ng-model="videoDescription">
+                  </div>
+                    
+                  <div class="form-group">
                     <label for="videoLink">Enter a Youtube Link</label>
-                        <input type="text" class="form-control" id="videoLink" placeholder="enter the clip link" ng-model="videoLink" required>
-                </div>
-                <button type="button" class="btn btn-danger" ng-click="addVideo()" value="addVideo">Add now!</button>
-            </form>
-            <br />
-          </div>
+                    <input type="text" class="form-control" id="videoLink" placeholder="enter the clip link" ng-model="videoLink" required>
+                  </div>
+                  
+                  <button type="button" class="btn btn-danger" ng-click="addVideo()" value="addVideo"><span class="glyphicon glyphicon-plus"></span> Add now!</button>
+                </form>
+                <br />
+              </div>
 
-        </th>
-      </tr>
-    </thead>
-    <tr>
-  		<th>Title</th>
-  		<th>Category</th>
-  		<th>Description</th>
-      <th>Play</th>
-      <th>Delete</th>
-      <th>Edit Details</th>
-  	</tr>
-  	
-  	<tr ng-repeat="item in videos">
-  		<td>{{item.title}}</td>
-  		<td>{{item.category}}</td>
-  		<td>{{item.description}}</td>
-  		<td>
-  			<button class="btn btn-danger" ng-click="redirectToYoutube(item)"><span class="glyphicon glyphicon-play"></span> PLAY</button>
-      </td>
-      <td>
-        <button class="btn btn-danger" ng-click="removeVideo(item)"><span class="glyphicon glyphicon-trash"></span> DELETE</button>
-      </td>
-      <td>
-        <button class="btn btn-danger" ng-click=""><span class="glyphicon glyphicon-pencil"></span> EDIT</button>
-      </td>
+            </th>
+          </tr>
+        </thead>
 
-  	</tr>
+        <tr>
+          <th>Title</th>
+          <th>Category</th>
+          <th>Description</th>
+          <th>Play</th>
+          <th>Delete</th>
+          <th>Edit Details</th>
+        </tr>
+        
+        <tr ng-repeat="item in videos">
+          <td>{{item.title}}</td>
+          <td>{{item.category}}</td>
+          <td>{{item.description}}</td>
+          <td>
+            <button class="btn btn-danger" ng-click="redirectToYoutube(item)"><span class="glyphicon glyphicon-play"></span> PLAY</button>
+          </td>
+          <td>
+            <button class="btn btn-danger" ng-click="removeVideo(item)"><span class="glyphicon glyphicon-trash"></span> DELETE</button>
+          </td>
+          <td>
+            <button class="btn btn-danger" data-toggle="collapse" data-target="#edit"><span class="glyphicon glyphicon-pencil"></span> EDIT</button>
+          </td>
 
-  </table>
-
-  
-  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
-
-  <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Modal Header</h4>
-        </div>
-        <div class="modal-body">
-          <p>Some text in the modal.</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-      
+        </tr>
+      </table>
     </div>
+
+    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+      <!-- Edit Video Details -->
+      <div id="edit" class="collapse">
+
+            <form name="editVideoDetails">
+              <div class="form-group">
+                <label for="updatedVideoTitle">Enter a new tilte</label>
+                <input type="text" class="form-control" id="updatedVideoTitle" placeholder="enter a new clip title" ng-model="updatedVideoTitle">
+              </div>
+              <div class="form-group">
+                <label for="updatedVideoCategory">Enter a new category</label>
+                <input type="text" class="form-control" id="updatedVideoCategory" placeholder="enter a new clip category" ng-model="updatedVideoCategory" required>
+              </div>
+              <div class="form-group">
+                <label for="updatedVideoDescription">Enter a new description</label>
+                <input type="text" class="form-control" id="updatedVideoDescription" placeholder="enter a new clip description" ng-model="updatedVideoDescription">
+              </div>
+              <div class="form-group">
+                <label for="updatedVideoLink">Enter a new Youtube link</label>
+                <input type="text" class="form-control" id="updatedVideoLink" placeholder="enter a new clip link" ng-model="updatedVideoLink">
+              </div>
+              <button type="button" class="btn btn-danger" ng-click="updateDetails(item)" value="updateVideoDetails"><span class="glyphicon glyphicon-cog"></span> Update!</button>
+            </form>
+      </div>
+
+    </div>
+
   </div>
-
-  
-
-
-
-
-
-
 </div>
 </div>

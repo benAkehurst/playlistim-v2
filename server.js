@@ -103,6 +103,11 @@ app.get("/getUserVideos", function(request,response){
 	});
 });
 
+// Updates user provided details for specific video
+app.patch("/updateVideoDetails",function(request,response){
+
+});
+
 // Delete a single video from the playlist: 
 app.delete("/removeVideo", function(request, response){
 

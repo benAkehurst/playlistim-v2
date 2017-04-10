@@ -4,7 +4,7 @@
 
 	var profileModule = angular.module("profileModule", []);
 
-	profileModule.controller("ProfileController", function($scope, $http, $location, $rootScope,$window){
+	profileModule.controller("ProfileController", function($scope, $http, $location, $rootScope, $window){
 
 		// Create
 		$scope.addVideo = function(){
@@ -37,15 +37,9 @@
 				data:newVideo
 			});
 
-			
-			// Set back to pristine.
-			$scope.newVideoAddForm.$setPristine();
-			// Since Angular 1.3, set back to untouched state.
-			$scope.newVideoAddForm.$setUntouched();
-
 			// Each time the playlist has a video added, the playlist gets reloaded
 			getVideos();
-		} // End of adding a video
+		}
 
 		// Read
 		var getVideos = function(){
@@ -58,23 +52,37 @@
 			}); // End of get
 		}
 
-		// Allows for redirecting to the play page
-		$scope.redirect = function(item){
+		// Update
+		$scope.updateDetails = function(item){
+			
+			var updatedVideoTitle = $scope.updatedVideoTitle;
+			var updatedVideoCategory = $scope.updatedVideoCategory;
+			var updatedVideoDescription = $scope.updatedVideoDescription;
+			var updatedVideoLink = $scope.updatedVideoLink;
 
-			$rootScope.videoToPlay = item;
+			console.log("Title: " + updatedVideoTitle + "\nCategory: " + updatedVideoCategory + "\nDescription: " + updatedVideoDescription + "\nLink: " + updatedVideoLink);
+			
+			// Here we make an object of the login and password
+			// var newVideo = {
+			// 	"userID":userID,
+			// 	"title":videoTitle,
+			// 	"category":videoCategory,
+			// 	"description":videoDescription,
+			// 	"link":videoLink
+			// }
 
-			$location.path('/play');
+			// console.log("New Video Object: " + JSON.stringify(newVideo));
+
+			// In the http request to the server we send over the user details object
+			// $http({
+			// 	method:"POST",
+			// 	url:"/addVideo",
+			// 	headers:{ 'Content-Type': 'application/json'  },
+			// 	data:newVideo
+			// });
 		}
 
-		// Logout Function - Fires where user logs out
-		$scope.logout = function(){
-			// The session storage is cleared
-			sessionStorage.clear();
-			// The user is redirected back to the homepage
-			$location.path("/");
-		}
-
-        // Delete
+		// Delete
 		$scope.removeVideo = function(item){
 			
 			var videoToRemove = item;
@@ -93,6 +101,22 @@
 			getVideos();
 		}
 
+		// Allows for redirecting to the play page
+		$scope.redirect = function(item){
+
+			$rootScope.videoToPlay = item;
+
+			$location.path('/play');
+		}
+
+		// Logout Function - Fires where user logs out
+		$scope.logout = function(){
+			// The session storage is cleared
+			sessionStorage.clear();
+			// The user is redirected back to the homepage
+			$location.path("/");
+		}
+
 		// Play button opens new tab with youtube video playing
 		$scope.redirectToYoutube = function(item){
 			var link = item.link;
@@ -103,7 +127,6 @@
 		var init = function(){
 			getVideos();
 		}
-
 		//calls the init function when the controller is loaded
 		init();
 		

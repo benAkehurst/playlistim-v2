@@ -49,12 +49,24 @@
 
 .errorWarningLogin {
 	color:red;
+	font-weight: bold;
+	font-size: 24px;
 }
 
 /* CSS for the profile page */
 
 th {
 	text-align:center;
+}
+
+th, td {
+	padding-left: 7px;
+	padding-right: 7px;
+}
+
+td {
+	padding-top: 7px;
+	padding-bottom: 7px;
 }
 
 /* CSS for footer */
