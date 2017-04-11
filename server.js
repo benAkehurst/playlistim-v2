@@ -108,7 +108,36 @@ app.patch("/updateVideoDetails",function(request,response){
 
 	var newVideoEdit = request.body;
 	console.log(newVideoEdit);
+
 });
+
+// // Updates user provided details for specific video
+// app.patch("/updateVideoDetails",function(request,response){
+
+// 	var newVideoEdit = request.body;
+// 	console.log(newVideoEdit);
+
+// 	// User.findOneAndUpdate(
+// 	// 	{_id:newVideoEdit.userID},
+// 	// 	{$set:
+// 	// 		{videos:{title:newVideoEdit.title}}
+			
+
+// 	// 		// {title:newVideoEdit.videoToEditTitle,title:newVideoEdit.title, category:newVideoEdit.category, description:newVideoEdit.description, link:newVideoEdit.link}
+// 	// 	},
+// 	// 	{upsert: true},
+
+// 	// 	function(err,success){
+// 	// 		if (err){
+// 	// 			console.log("Err: " + err);
+// 	// 		}
+// 	// 		else{
+// 	// 			var updated = [{"status":true}];
+// 	// 			response.send(JSON.stringify(updated));
+// 	// 			console.log("Updated");
+// 	// 		}
+// 	// 	}
+// });
 
 // Delete a single video from the playlist: 
 app.delete("/removeVideo", function(request, response){
@@ -129,6 +158,8 @@ app.delete("/removeVideo", function(request, response){
 			console.log("Error: " + err);
 		}
 		else {
+			var deleted = [{"status":true}];
+			response.send(JSON.stringify(deleted));
 			console.log("Deleted!");
 		}
 	});

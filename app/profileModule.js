@@ -15,7 +15,7 @@
 
 			// console.log("From login controller" + "\nTitle: " + videoTitle + "\nCategory: " + videoCategory + "\nDescription: " + videoDescription + "\nLink: " + videoLink);
 
-			var userID = sessionStorage.getItem('id');
+			var userID = localStorage.getItem('id');
 			// console.log(userID);
 
 			// Here we make an object of the login and password
@@ -52,63 +52,40 @@
 			}); // End of get
 		}
 
-		// // Update
-		// $scope.updateDetails = function(item){
-
-		// 	var userID = item;
-		// 	var updatedVideoTitle = $scope.updatedVideoTitle;
-		// 	var updatedVideoCategory = $scope.updatedVideoCategory;
-		// 	var updatedVideoDescription = $scope.updatedVideoDescription;
-		// 	var updatedVideoLink = $scope.updatedVideoLink;
-
-		// 	console.log("Title: " + updatedVideoTitle + "\nCategory: " + updatedVideoCategory + "\nDescription: " + updatedVideoDescription + "\nLink: " + updatedVideoLink);
-			
-		// 	var editedDetails = {
-		// 		"userID":userID,
-		// 		"title":updatedVideoTitle,
-		// 		"category":updatedVideoCategory,
-		// 		"description":updatedVideoDescription,
-		// 		"link":updatedVideoLink
-		// 	}
-
-		// 	console.log("New Video Object: " + JSON.stringify(editedDetails));
-
-		// 	// In the http request to the server we send over the user details object
-		// 	// $http({
-		// 	// 	method:"POST",
-		// 	// 	url:"/addVideo",
-		// 	// 	headers:{ 'Content-Type': 'application/json'  },
-		// 	// 	data:newVideo
-		// 	// });
-		// }
-
 		// Delete
 		$scope.removeVideo = function(item){
 			
 			var videoToRemove = item;
 
-			var videoToRemoveObj = {"userID":item.userID, "link":item.link}
+			var userID = localStorage.getItem('id');
 
-			console.log(JSON.stringify(videoToRemoveObj));
+			var videoToRemoveObj = {"userID":userID, "link":item.link}
+
+			// console.log(JSON.stringify(videoToRemoveObj));
 
 			$http({
 				method:"DELETE",
 				url:"/removeVideo",
 				headers:{ 'Content-Type': 'application/json'  },
 				data:videoToRemoveObj
-			});	
+			}).
+
+			then(function(response){
+				var status = response.data[0].status;
+
+				if (status == false){
+					$scope.notDeleted = "Not Deleted";
+				}
+			
+				else {
+					$scope.deleted = "Deleted";
+				}
+			});
 
 			getVideos();
 		}
 
-		// Allows for redirecting to the play page
-		$scope.redirect = function(item){
-
-			$rootScope.videoToPlay = item;
-
-			$location.path('/play');
-		}
-
+		//Link to the edit page
 		$scope.editDetails = function(item){
 			$rootScope.videoDetailsToEdit = item;
 			$location.path("/edit");
@@ -118,6 +95,7 @@
 		$scope.logout = function(){
 			// The session storage is cleared
 			sessionStorage.clear();
+			localStorage.clear();
 			// The user is redirected back to the homepage
 			$location.path("/");
 		}
@@ -131,6 +109,8 @@
 		// Calls the users playlist on profile load
 		var init = function(){
 			getVideos();
+			var usernameFromLogin = sessionStorage.getItem('user');
+			$scope.usersName = usernameFromLogin;
 		}
 		//calls the init function when the controller is loaded
 		init();

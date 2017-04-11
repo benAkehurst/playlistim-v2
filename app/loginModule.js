@@ -46,8 +46,8 @@
 			
 				else {
 					//If the user logs in we set a session token with the users name
-					sessionStorage.setItem('user',JSON.stringify(name));
-					sessionStorage.setItem('id',id);
+					sessionStorage.setItem('user',name);
+					localStorage.setItem('id',id);
 
 					$rootScope.loggedIn = true;
 
