@@ -15,30 +15,46 @@
 
 			// console.log("From login controller" + "\nTitle: " + videoTitle + "\nCategory: " + videoCategory + "\nDescription: " + videoDescription + "\nLink: " + videoLink);
 
-			var userID = localStorage.getItem('id');
-			// console.log(userID);
+			// Making the user submitted url into a variable for checking validity
+			var videoLinkFromClient = videoLink;
+			// Call the function to check if url is valid
+			var youtubeUrlIsValid = matchYoutubeUrl(videoLinkFromClient);
 
-			// Here we make an object of the login and password
-			var newVideo = {
-				"userID":userID,
-				"title":videoTitle,
-				"category":videoCategory,
-				"description":videoDescription,
-				"link":videoLink
+			// If the function returns true we make a new item
+			if (youtubeUrlIsValid == true){
+
+				// gets the users ID from the local storage
+				var userID = localStorage.getItem('id');
+				// console.log(userID);
+
+				// Here we make an object of the login and password
+				var newVideo = {
+					"userID":userID,
+					"title":videoTitle,
+					"category":videoCategory,
+					"description":videoDescription,
+					"link":videoLink
+				}
+				// console.log("New Video Object: " + JSON.stringify(newVideo));
+
+				// In the http request to the server we send over the user details object
+				$http({
+					method:"POST",
+					url:"/addVideo",
+					headers:{ 'Content-Type': 'application/json'  },
+					data:newVideo
+				});
+
+				// Clear the error message if a value exists
+				$scope.youtubeUrlInvalid = "";
+
+				// Each time the playlist has a video added, the playlist gets reloaded
+				getVideos();
 			}
-
-			// console.log("New Video Object: " + JSON.stringify(newVideo));
-
-			// In the http request to the server we send over the user details object
-			$http({
-				method:"POST",
-				url:"/addVideo",
-				headers:{ 'Content-Type': 'application/json'  },
-				data:newVideo
-			});
-
-			// Each time the playlist has a video added, the playlist gets reloaded
-			getVideos();
+			else {
+				// presents an error message if the youtube url is not valid
+				$scope.youtubeUrlInvalid = "Please check the Youtube URL";
+			}
 		}
 
 		// Read
@@ -129,7 +145,16 @@
 		}
 		//calls the init function when the controller is loaded
 		init();
-		
 	});
+
+	// Function used for validating youtube url
+	function matchYoutubeUrl(url) {
+    	var p = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
+   		var matches = url.match(p);
+    	if(matches){
+        	return true;
+    	}
+    	return false;
+	}
 
 })();

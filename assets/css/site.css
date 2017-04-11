@@ -69,6 +69,11 @@ td {
 	padding-bottom: 7px;
 }
 
+.youtubeUrlValid {
+	color: red;
+	font-size: 18px;
+}
+
 /*EDIT PAGE*/
 .updatedTrue {
 	color: green;

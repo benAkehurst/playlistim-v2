@@ -7,7 +7,7 @@
 			<form name="editVideoDetails">
 	         	<div class="form-group">
 	                <label for="updatedVideoTitle">Enter a new tilte</label>
-	                <input type="text" class="form-control" id="updatedVideoTitle" placeholder="enter a new clip title" ng-model="updatedVideoTitle">
+	                <input type="text" class="form-control" id="updatedVideoTitle" placeholder="enter a new clip title" ng-model="updatedVideoTitle" required>
 	            </div>
 	            <div class="form-group">
 	                <label for="updatedVideoCategory">Enter a new category</label>
@@ -15,13 +15,14 @@
 	            </div>
 	            <div class="form-group">
 	                <label for="updatedVideoDescription">Enter a new description</label>
-	                <input type="text" class="form-control" id="updatedVideoDescription" placeholder="enter a new clip description" ng-model="updatedVideoDescription">
+	                <input type="text" class="form-control" id="updatedVideoDescription" placeholder="enter a new clip description" ng-model="updatedVideoDescription" required>
 	            </div>
 	            <div class="form-group">
 	                <label for="updatedVideoLink">Enter a new Youtube link</label>
-	                <input type="text" class="form-control" id="updatedVideoLink" placeholder="enter a new clip link" ng-model="updatedVideoLink">
+	                <input type="text" class="form-control" id="updatedVideoLink" placeholder="enter a new clip link" ng-model="updatedVideoLink" required>
+	                <span class="youtubeUrlValid">{{youtubeUrlInvalid}}</span>
 	            </div>
-	            <button type="button" class="btn btn-danger" ng-click="updateDetails()" value="updateVideoDetails"><span class="glyphicon glyphicon-cog"></span> Update!</button> <span class="updatedTrue">{{updateSuccess}}</span>
+	            <button type="button" class="btn btn-danger" ng-click="updateDetails()" value="updateVideoDetails" ng-disabled="editVideoDetails.$invalid"><span class="glyphicon glyphicon-cog"></span> Update!</button> <span class="updatedTrue">{{updateSuccess}}</span>
         	</form>
 
         	<br />

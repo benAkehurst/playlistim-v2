@@ -31,15 +31,16 @@
                   
                   <div class="form-group">
                     <label for="videoDescription">Enter a Description</label>
-                    <input type="text" class="form-control" id="videoDescription" placeholder="enter the clip Description" ng-model="videoDescription">
+                    <input type="text" class="form-control" id="videoDescription" placeholder="enter the clip Description" ng-model="videoDescription" required >
                   </div>
                     
                   <div class="form-group">
                     <label for="videoLink">Enter a Youtube Link</label>
                     <input type="text" class="form-control" id="videoLink" placeholder="enter the clip link" ng-model="videoLink" required>
+                    <span class="youtubeUrlValid">{{youtubeUrlInvalid}}</span>
                   </div>
                   
-                  <button type="button" class="btn btn-danger" ng-click="addVideo()" value="addVideo"><span class="glyphicon glyphicon-plus"></span> Add now!</button>
+                  <button type="button" class="btn btn-danger" ng-click="addVideo()" value="addVideo" ng-disabled="newVideoAddForm.$invalid"><span class="glyphicon glyphicon-plus"></span> Add now!</button>
                 </form>
                 <br />
               </div>
