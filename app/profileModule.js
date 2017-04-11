@@ -43,8 +43,23 @@
 
 		// Read
 		var getVideos = function(){
+
+			var userID = localStorage.getItem('id');
+			// // console.log(userID);
+
+			var userIdObj = {
+				"userID":userID
+			}
+			// console.log(userIdObj);
+
+			$http({
+				method:"POST",
+				url:"/getUserVideos",
+				headers:{ 'Content-Type': 'application/json'  },
+				data:userIdObj
+			})
 			
-			$http.get("/getUserVideos").then(function(response){
+			.then(function(response){
 				
 				$scope.videos = response.data.videos; // products = model (data type)
 				// console.log(response.data.videos);

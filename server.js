@@ -32,7 +32,7 @@ var User = mongoose.model("User",{
 	videos:[],
 });
 
-// Add a new user to the database
+// NEW USER REGISTER
 app.post("/register", function(request, response){
 	// Using the User Schema, we make a new user with user supplied details
 	var newUser = new User(request.body);
@@ -43,7 +43,7 @@ app.post("/register", function(request, response){
 	// console.log(newUser);
 });
 
-// Checks if a user exists in the DB for login
+// LOGIN
 app.post("/login", function(request, response){
 	// We receive the $http request from the login
 	// In the DB we look for the user provided UN and PW
@@ -72,7 +72,7 @@ app.post("/login", function(request, response){
 	});
 });
 
-// Add a video
+// CREATE
 app.post("/addVideo", function(request,response){
 	
 	var newVideo = request.body;
@@ -94,16 +94,24 @@ app.post("/addVideo", function(request,response){
 	});
 });
 
-// Gets all the videos in the DB accosiated with the user
-app.get("/getUserVideos", function(request,response){
-
-	User.findOne({},function(err,videos){
-		response.send(videos);
-		// console.log(videos);
-	});
+// READ
+app.post("/getUserVideos", function(request,response){
+	var id = request.body;
+	var idForFind = id.userID;
+	User.findOne({_id:idForFind},
+		
+		function(err,videos){
+			if(err){
+				console.log("Err: " + err)
+			}
+			else{
+				response.send(videos);
+				// console.log(videos);
+			}
+		});
 });
 
-// Updates user provided details for specific video
+// UPDATE
 app.patch("/updateVideoDetails",function(request,response){
 
 	var newVideoEdit = request.body;
@@ -135,7 +143,7 @@ app.patch("/updateVideoDetails",function(request,response){
 	});
 });
 
-// Delete a single video from the playlist: 
+// DELETE
 app.delete("/removeVideo", function(request, response){
 
 	var videoToRemove = request.body;
