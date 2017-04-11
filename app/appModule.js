@@ -7,6 +7,7 @@
 												 "loginModule",
 												 "registerModule",
 												 "profileModule",
+												 "editModule"
 												]);
 
 	appModule.config(function($routeProvider){
@@ -38,6 +39,11 @@
 			// },
 			controller:"ProfileController",
 			templateUrl:"app/profileView.html"
+		})
+
+		.when("/edit", {
+			controller:"EditController",
+			templateUrl:"app/editView.html"
 		})
 
 		.otherwise({

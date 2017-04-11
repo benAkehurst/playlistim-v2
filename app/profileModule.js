@@ -52,35 +52,35 @@
 			}); // End of get
 		}
 
-		// Update
-		$scope.updateDetails = function(item){
+		// // Update
+		// $scope.updateDetails = function(item){
+
+		// 	var userID = item;
+		// 	var updatedVideoTitle = $scope.updatedVideoTitle;
+		// 	var updatedVideoCategory = $scope.updatedVideoCategory;
+		// 	var updatedVideoDescription = $scope.updatedVideoDescription;
+		// 	var updatedVideoLink = $scope.updatedVideoLink;
+
+		// 	console.log("Title: " + updatedVideoTitle + "\nCategory: " + updatedVideoCategory + "\nDescription: " + updatedVideoDescription + "\nLink: " + updatedVideoLink);
 			
-			var updatedVideoTitle = $scope.updatedVideoTitle;
-			var updatedVideoCategory = $scope.updatedVideoCategory;
-			var updatedVideoDescription = $scope.updatedVideoDescription;
-			var updatedVideoLink = $scope.updatedVideoLink;
+		// 	var editedDetails = {
+		// 		"userID":userID,
+		// 		"title":updatedVideoTitle,
+		// 		"category":updatedVideoCategory,
+		// 		"description":updatedVideoDescription,
+		// 		"link":updatedVideoLink
+		// 	}
 
-			console.log("Title: " + updatedVideoTitle + "\nCategory: " + updatedVideoCategory + "\nDescription: " + updatedVideoDescription + "\nLink: " + updatedVideoLink);
-			
-			// Here we make an object of the login and password
-			// var newVideo = {
-			// 	"userID":userID,
-			// 	"title":videoTitle,
-			// 	"category":videoCategory,
-			// 	"description":videoDescription,
-			// 	"link":videoLink
-			// }
+		// 	console.log("New Video Object: " + JSON.stringify(editedDetails));
 
-			// console.log("New Video Object: " + JSON.stringify(newVideo));
-
-			// In the http request to the server we send over the user details object
-			// $http({
-			// 	method:"POST",
-			// 	url:"/addVideo",
-			// 	headers:{ 'Content-Type': 'application/json'  },
-			// 	data:newVideo
-			// });
-		}
+		// 	// In the http request to the server we send over the user details object
+		// 	// $http({
+		// 	// 	method:"POST",
+		// 	// 	url:"/addVideo",
+		// 	// 	headers:{ 'Content-Type': 'application/json'  },
+		// 	// 	data:newVideo
+		// 	// });
+		// }
 
 		// Delete
 		$scope.removeVideo = function(item){
@@ -107,6 +107,11 @@
 			$rootScope.videoToPlay = item;
 
 			$location.path('/play');
+		}
+
+		$scope.editDetails = function(item){
+			$rootScope.videoDetailsToEdit = item;
+			$location.path("/edit");
 		}
 
 		// Logout Function - Fires where user logs out
