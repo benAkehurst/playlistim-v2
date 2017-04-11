@@ -21,12 +21,10 @@
 	                <label for="updatedVideoLink">Enter a new Youtube link</label>
 	                <input type="text" class="form-control" id="updatedVideoLink" placeholder="enter a new clip link" ng-model="updatedVideoLink">
 	            </div>
-	            <button type="button" class="btn btn-danger" ng-click="updateDetails()" value="updateVideoDetails"><span class="glyphicon glyphicon-cog"></span> Update!</button>
+	            <button type="button" class="btn btn-danger" ng-click="updateDetails()" value="updateVideoDetails"><span class="glyphicon glyphicon-cog"></span> Update!</button> <span class="updatedTrue">{{updateSuccess}}</span>
         	</form>
 
         	<br />
-
-        	<span class="spanEditSuccess"></span>
 
         	<button type="button" class="btn btn-danger" ng-click="backToPlaylist()"><span class="glyphicon glyphicon-arrow-left"></span> Back</button>
 		</div>

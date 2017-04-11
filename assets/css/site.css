@@ -69,6 +69,12 @@ td {
 	padding-bottom: 7px;
 }
 
+/*EDIT PAGE*/
+.updatedTrue {
+	color: green;
+	font-size: 18px;
+}
+
 /* CSS for footer */
 .footer {
 	margin-top: 50px;

@@ -4,7 +4,7 @@
 
 	var editModule = angular.module("editModule", []);
 
-	editModule.controller("EditController", function($scope, $http, $location, $rootScope, $window){
+	editModule.controller("EditController", function($scope, $http, $location, $rootScope, $window, $timeout){
 
 		// Update
 		$scope.updateDetails = function(){
@@ -41,14 +41,13 @@
 			})
 
 			.then(function(response){
-				var status = response.data[0].status;
 
-				if (status == false){
-					$scope.errorWarning = "Something didn't work. Please check your details and try again";
-				}
-			
-				else {
-					$location.path("/profile");
+				$scope.updateSuccess = "Details Updated!"
+
+				if(response){
+					$timeout(function() {
+				      $location.path('/profile');;
+				      }, 2000);
 				}
 			});
 		}
