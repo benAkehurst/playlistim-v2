@@ -4,7 +4,7 @@
 
 	var loginModule = angular.module("loginModule", []);
 
-	loginModule.controller("LoginController", function($scope, $http, $location, $rootScope){
+	loginModule.controller("LoginController", function($scope, $http, $location, $rootScope, $timeout){
 
 		// POST Request for Login
 		$scope.login = function() {
@@ -50,8 +50,12 @@
 					localStorage.setItem('id',id);
 
 					$rootScope.loggedIn = true;
-
-					$location.path("/profile");
+					$scope.errorWarning = "";
+					$scope.loggingIn = "Logging In...";
+					
+					$timeout(function() {
+						$location.path("/profile");
+					    }, 1500);
 				}
 
 			});

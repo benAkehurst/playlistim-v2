@@ -45,12 +45,23 @@
 	margin: 0 auto;
 }
 
+/*Register Page*/
+.registerOK {
+	color:green;
+	font-size: 20px;
+}
+
 /*CSS for login page */
 
 .errorWarningLogin {
 	color:red;
 	font-weight: bold;
 	font-size: 24px;
+}
+
+.loginOK {
+	color:green;
+	font-size: 20px;
 }
 
 /* CSS for the profile page */

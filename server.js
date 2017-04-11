@@ -35,6 +35,7 @@ var User = mongoose.model("User",{
 // NEW USER REGISTER
 app.post("/register", function(request, response){
 	// Using the User Schema, we make a new user with user supplied details
+	
 	var newUser = new User(request.body);
 	// The user is saved to the DB
 	newUser.save();

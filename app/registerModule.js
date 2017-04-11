@@ -4,7 +4,7 @@
 
 	var registerModule = angular.module("registerModule", []);
 
-	registerModule.controller("RegisterController", function($scope, $http, $location){
+	registerModule.controller("RegisterController", function($scope, $http, $location, $timeout){
 
 		// This function is used to register a new user
 		$scope.register = function(){
@@ -35,8 +35,13 @@
 			// After the user registers, the page redirects to the login page
 			.then(function(response){
 				// console.log(response);
-				if(response.data === "Registered"){
-					$location.path("/login");
+				if(response.data == "Registered"){
+				
+					$scope.thanksForRegistering = "Thanks for Registering - going to login.";
+					
+					$timeout(function() {
+						$location.path("/login");
+					    }, 2000);
 				}
 			});
 		}
