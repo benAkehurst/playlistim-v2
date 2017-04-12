@@ -4,10 +4,11 @@
 
 	var profileModule = angular.module("profileModule", []);
 
-	profileModule.controller("ProfileController", function($scope, $http, $location, $rootScope, $window){
+	profileModule.controller("ProfileController", function($scope, $http, $location, $rootScope, $window, $cookieStore){
 
 		// Create
 		$scope.addVideo = function(){
+
 			var videoTitle = $scope.videoTitle;
 			var videoCategory = $scope.videoCategory;
 			var videoDescription = $scope.videoDescription;
@@ -45,11 +46,16 @@
 					data:newVideo
 				});
 
+				// Clears form after submit
+				$scope.videoTitle = "";
+				$scope.videoCategory = "";
+				$scope.videoDescription = "";
+				$scope.videoLink = "";
+    			
+    			// Each time the playlist has a video added, the playlist gets reloaded
+				getVideos();
 				// Clear the error message if a value exists
 				$scope.youtubeUrlInvalid = "";
-
-				// Each time the playlist has a video added, the playlist gets reloaded
-				getVideos();
 			}
 			else {
 				// presents an error message if the youtube url is not valid
@@ -124,9 +130,10 @@
 
 		// Logout Function - Fires where user logs out
 		$scope.logout = function(){
-			// The session storage is cleared
+			// If the user chooses to log out, all data stored is cleared
 			sessionStorage.clear();
 			localStorage.clear();
+			$cookieStore.remove("user");
 			// The user is redirected back to the homepage
 			$location.path("/");
 		}
@@ -137,14 +144,15 @@
             $window.open(link, '_blank');
         };
 
-		// Calls the users playlist on profile load
+        // Calls the users playlist on profile load
 		var init = function(){
 			getVideos();
 			var usernameFromLogin = sessionStorage.getItem('user');
 			$scope.usersName = usernameFromLogin;
 		}
-		//calls the init function when the controller is loaded
+        //calls the init function when the controller is loaded
 		init();
+
 	});
 
 	// Function used for validating youtube url

@@ -4,7 +4,7 @@
 
 	var loginModule = angular.module("loginModule", []);
 
-	loginModule.controller("LoginController", function($scope, $http, $location, $rootScope, $timeout){
+	loginModule.controller("LoginController", function($scope, $http, $location, $rootScope, $timeout, $cookies){
 
 		// POST Request for Login
 		$scope.login = function() {
@@ -49,13 +49,23 @@
 					sessionStorage.setItem('user',name);
 					localStorage.setItem('id',id);
 
+					$cookies.put('user', loginDetails.email);
+					var username = $cookies.get('loginEmail');
+
+					//You can set the expired time with the third params
+					var today = new Date();
+					var expired = new Date(today);
+					expired.setDate(today.getDate() + 1); //Set expired date to tomorrow
+					$cookies.put('user', loginDetails.email, {expires : expired });
+
+
 					$rootScope.loggedIn = true;
 					$scope.errorWarning = "";
 					$scope.loggingIn = "Logging In...";
 					
 					$timeout(function() {
 						$location.path("/profile");
-					    }, 1500);
+					    }, 1000);
 				}
 
 			});
