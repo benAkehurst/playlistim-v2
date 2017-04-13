@@ -6,6 +6,13 @@
 
 	editModule.controller("EditController", function($scope, $http, $location, $rootScope, $window, $timeout){
 
+		// Allows placeholder in edit view to populate with the current details
+		var detailsForDisplay = $rootScope.videoDetailsToEdit;
+		$scope.titleToEdit = detailsForDisplay.title;
+		$scope.categoryToEdit = detailsForDisplay.category;
+		$scope.descriptionToEdit = detailsForDisplay.description;
+		$scope.linkToEdit = detailsForDisplay.link;
+
 		// Update
 		$scope.updateDetails = function(){
 
