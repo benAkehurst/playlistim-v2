@@ -4,11 +4,13 @@
 
 	var appModule = angular.module("appModule", ["ngRoute",
 												 "ngCookies",
+												 "youtube-embed",
 												 "homepageModule",
 												 "loginModule",
 												 "registerModule",
 												 "profileModule",
-												 "editModule"
+												 "editModule",
+												 "playModule"
 												]);
 
 	appModule.config(function($routeProvider){
@@ -38,6 +40,11 @@
 		.when("/edit", {
 			controller:"EditController",
 			templateUrl:"app/editView.html"
+		})
+
+		.when("/play", {
+			controller:"PlayController",
+			templateUrl:"app/playView.html"
 		})
 
 		.otherwise({

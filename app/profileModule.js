@@ -140,14 +140,16 @@
 
 		// Play button opens new tab with youtube video playing
 		$scope.redirectToYoutube = function(item){
-			var link = item.link;
-            $window.open(link, '_blank');
+			// var link = item.link;
+   //          $window.open(link, '_blank');
+   			$rootScope.videoToPlay = item;
+   			$location.path("/play");
         };
 
         // Calls the users playlist on profile load
 		var init = function(){
 			getVideos();
-			var usernameFromLogin = sessionStorage.getItem('user');
+			var usernameFromLogin = localStorage.getItem('user');
 			$scope.usersName = usernameFromLogin;
 		}
         //calls the init function when the controller is loaded

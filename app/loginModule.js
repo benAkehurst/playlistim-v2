@@ -46,7 +46,7 @@
 			
 				else {
 					//If the user logs in we set a session token with the users name
-					sessionStorage.setItem('user',name);
+					localStorage.setItem('user',name);
 					localStorage.setItem('id',id);
 
 					$cookies.put('user', loginDetails.email);

@@ -91,6 +91,11 @@ td {
 	font-size: 18px;
 }
 
+/*Play PAGE*/
+.playPage {
+	text-align: center;
+}
+
 /* CSS for footer */
 .footer {
 	margin-top: 50px;
